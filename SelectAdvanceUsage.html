@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Request Parts</title>
+  </head>
+  <body bgcolor="pink">
+    
+    <marquee>SALIU'S ITEM PICKER</marquee>
+    <br><br><br><br>
+
+Select a Part and Click on ADD Part:
+<select id="mySelect">
+  <option><--Choose a Part--></option>
+  <option value="Brake Shoe">Brake Shoe</option>
+  <option value="Front Pointer">Front Pointer</option>
+  <option value="Tyre Tube">Tyre Tube</option>
+</select>
+<button onclick=" AddCost(); AddPart()">ADD Part</button>
+<button onclick=" clearParts();">CLEAR Added Part(s)</button>
+
+<br><br>
+<div>
+<font size="4"><b>Faulty Part(s) List</b></font><br>
+<textarea rows="5" cols="50" id="PartsList" readonly></textarea> <br><br>
+<font size="4"><b>Costs(&#8358;)</b></font><br>
+<textarea rows="5" cols="40" id="Costs" readonly></textarea><br>
+Total Cost(&#8358;) <textarea rows="2" cols="27" id="TotalCosts" readonly></textarea>
+</div>
+
+
+
+
+
+<script>
+  //---------------ADD PARTS-----------------------//
+function AddPart() {
+  var x = document.getElementById("mySelect").value;
+  var y = document.getElementById("PartsList").value;
+  if (x=="<--Choose a Part-->"){
+    x="";
+  }
+else{
+  if (y==""){
+    document.getElementById("PartsList").innerHTML = x;
+  }
+  else{
+    document.getElementById("PartsList").innerHTML = y + ", " + x;
+  }
+}
+}
+
+  //---------------------------------ADD COST(S)-----------------------------------//
+  function AddCost(){
+    var x = document.getElementById("mySelect").value;
+    var cost = document.getElementById("Costs").value;
+    var tcost = document.getElementById("TotalCosts").value;
+
+      //---------------------------------Add Brake Shoe cost-----------------------------------//
+    if (x=="Brake Shoe"){
+      if(cost=="")
+      {
+        document.getElementById("Costs").value=1500;
+        document.getElementById("TotalCosts").value=1500;
+      }
+      else{
+        document.getElementById("Costs").value=cost + ", " + 1500;
+        document.getElementById("TotalCosts").value=parseInt(tcost) + 1500;
+      }
+
+    }
+
+      //---------------------------------Add Front Pointer Cost-----------------------------------//
+      if (x=="Front Pointer"){
+      if(cost=="")
+      {
+        document.getElementById("Costs").value=2000;
+        document.getElementById("TotalCosts").value=2000;
+      }
+      else{
+        document.getElementById("Costs").value=cost + ", " + 2000;
+        document.getElementById("TotalCosts").value=parseInt(tcost) + 2000;
+      }
+
+    }
+      //---------------------------------Add Tyre Tube Cost-----------------------------------//
+
+    if (x=="Tyre Tube"){
+      if(cost=="")
+      {
+        document.getElementById("Costs").value=3000;
+        document.getElementById("TotalCosts").value=3000;
+      }
+      else{
+        document.getElementById("Costs").value=cost + ", " + 3000;
+        document.getElementById("TotalCosts").value=parseInt(tcost) + 3000;
+      }
+
+    }
+
+
+  }
+
+
+  //---------------CLEAR PARTS-----------------------//
+function clearParts() {
+   document.getElementById("PartsList").innerHTML = "";
+   document.getElementById("Costs").value = "";
+   document.getElementById("TotalCosts").value = "";
+}
+
+  //---------------PRINT TRANSACTION RESULTS-----------------------//
+function print(){
+  var finalcost = document.getElementById("TotalCosts").value;
+  var selectedparts = document.getElementById("PartsList").value;
+
+  if (finalcost == ""){
+    
+  }
+ else{
+  alert("You chose: " + "\n" + selectedparts + "\n" + 'and the total cost of all the chosen parts is:' + "\n" +  "₦" + finalcost+ ".");
+ }
+}
+</script>
+
+<!--------------------------COPYRIGHT (OLADITAN SALIU (C) 2021)----------->
+</body>
+</html>
+
